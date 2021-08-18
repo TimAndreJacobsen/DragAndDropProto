@@ -1,0 +1,14 @@
+﻿<li class="draggable" draggable="true" title="@BookingModel.Description" @ondragstart="@(() => HandleDragStart(BookingModel))">
+    <p class="description">@BookingModel.Description</p>
+    <p class="last-updated"><small>Last Updated</small> @BookingModel.LastUpdated.ToString("HH:mm.ss tt")</p>
+</li>
+
+@code {
+    [CascadingParameter] BookingContainer Container { get; set; }
+    [Parameter] public BookingModel BookingModel { get; set; }
+
+    private void HandleDragStart(BookingModel selectedBooking)
+    {
+        Container.Payload = selectedBooking;
+    }
+}
